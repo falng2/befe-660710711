@@ -11,7 +11,7 @@ const HomePage = () => {
       author: 'F. Scott Fitzgerald', 
       price: 299, 
       originalPrice: 399,
-      coverImage: '/images/book1.jpg',
+      coverImage: '/images/book-placeholder.jpg',
       category: 'Classic',
       rating: 4.5,
       reviews: 234,
@@ -22,7 +22,7 @@ const HomePage = () => {
       title: '1984', 
       author: 'George Orwell', 
       price: 350, 
-      coverImage: '/images/book2.jpg',
+      coverImage: '/images/book-placeholder.jpg',
       category: 'Fiction',
       rating: 4.8,
       reviews: 512,
@@ -33,7 +33,7 @@ const HomePage = () => {
       title: 'To Kill a Mockingbird', 
       author: 'Harper Lee', 
       price: 320, 
-      coverImage: '/images/book3.jpg',
+      coverImage: '/images/book-placeholder.jpg',
       category: 'Classic',
       rating: 4.6,
       reviews: 189
@@ -50,7 +50,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-viridian-600 to-green-700 text-white">
+      <section className="relative bg-green-700 text-white">
         <div className="container mx-auto px-4 py-24">
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
@@ -62,7 +62,7 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/books" 
                 className="inline-flex items-center justify-center px-8 py-3 bg-white 
-                text-viridian-600 font-semibold rounded-lg hover:bg-gray-100 
+                text-violet-600 font-semibold rounded-lg hover:bg-gray-100 
                 transform hover:scale-105 transition-all duration-200">
                 เลือกซื้อหนังสือ
                 <ArrowRightIcon className="ml-2 h-5 w-5" />
