@@ -1,4 +1,4 @@
-FROM golang:1.24.5 as builder
+FROM golang:1.24.5 AS builder
 
 WORKDIR /app
 
@@ -16,4 +16,4 @@ WORKDIR /root
 
 COPY --from=builder /app/main .
 
-ENTRYPOINT {"./main"}
+ENTRYPOINT ["./main"]
