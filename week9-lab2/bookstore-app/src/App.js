@@ -15,6 +15,7 @@ import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import ListBookPage from './pages/ListBook';
 import LoginPage from './pages/LoginPage';
+import EditBookPage from './pages/editBookPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
        <Route path="/login" element={<LoginPage />} />
        <Route path="/store-manager/add-book" element={<AddBookPage />} />
         <Route path="/store-manager/list-book" element={<ListBookPage />} />
+        <Route path="/store-manager/edit-book/:id" element={<EditBookPage />}/>
 
        {/* Public Routes - With Navbar/Footer */}
        <Route path="*" element={

@@ -29,9 +29,37 @@ const ListBookPage = () => {
   const handleNavigateAddBook = () => {
     navigate('/store-manager/add-book'); // <-- ใส่ลิงก์ของคุณที่นี่
   };
+  const handleNavigateEdit = (id) => {
+    navigate(`/store-manager/edit-book/${id}`)
+  }
   useEffect(() => {
     fetchBooks();
   }, []);
+
+  const handleDelete = async (id, title) => {
+    // ยืนยันก่อนลบ
+    if (window.confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบหนังสือ "${title}" (ID: ${id})?`)) {
+      try {
+        // ส่งคำสั่ง DELETE ไปยัง API
+        const response = await fetch(`/api/v1/books/${id}`, {
+          method: 'DELETE',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to delete book');
+        }
+
+        // ลบข้อมูลออกจาก State (เพื่อให้หน้าเว็บอัปเดตทันที)
+        setData(data.filter(book => book.id !== id));
+        
+        console.log(`Book ID: ${id} deleted successfully.`);
+
+      } catch (err) {
+        console.error('Error deleting book:', err);
+        alert(`เกิดข้อผิดพลาดในการลบ: ${err.message}`);
+      }
+    }
+  };
 
   if (loading) {
     return (
@@ -98,14 +126,14 @@ const ListBookPage = () => {
                   <div className="flex space-x-2 flex-shrink-0">
 
                     {/* 1. แก้จาก rounded-l-lg เป็น rounded-lg */}
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
+                    <button onClick={() => handleNavigateEdit(book.id)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
                       Edit
                     </button>
 
-                    {/* 2. ลบ <span className="mx-2"></span> ที่ไม่จำเป็นออก */}
-
                     {/* 3. แก้จาก rounded-r-lg เป็น rounded-lg */}
-                    <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
+                    <button onClick={() => handleDelete(book.id , book.title)} 
+                    className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
                       Delete
                     </button>
                   </div>
