@@ -1,4 +1,4 @@
-FROM golang:1.24.5 as builder
+FROM golang:1.24.5 AS builder
 
 WORKDIR /app
 
@@ -15,5 +15,6 @@ RUN apk --no-cache add ca-certificates curl
 WORKDIR /root
 
 COPY --from=builder /app/main .
+COPY --from=builder /app/docs ./docs
 
-ENTRYPOINT {"./main"}
+ENTRYPOINT ["./main"]
